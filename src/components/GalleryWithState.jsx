@@ -24,8 +24,9 @@ export default function GalleryWithState() {
           ({index + 1} of {sculptureList.length})
         </h3>
         <button onClick={handleShowmore}>
-          {showmore ? "hide" : "show"}details
+          {showmore ? "hide" : "show"} details
         </button>
+        <hr />
         <img src={sculpture.url} alt={sculpture.alt} />
         {showmore && <p>{sculpture.description}</p>}
       </div>

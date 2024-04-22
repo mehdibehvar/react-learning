@@ -13,7 +13,7 @@ export default function Gallery() {
   return (
     <>
 <div className="glallery-card">
-<button onClick={handleClick}>
+      <button onClick={handleClick}>
         Next
       </button>
       <h2>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Clock from './Clock.jsx';
+import SelectColor from './SelectColor.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -15,16 +16,14 @@ function useTime() {
 export default function ClockParent() {
   const time = useTime();
   const [color, setColor] = useState('lightcoral');
-  console.log(color);
+  const handleSelect=(e)=>{
+    setColor(e.target.value)
+  }
   return (
     <div>
       <p>
         Pick a color:{' '}
-        <select value={color} onChange={e => setColor(e.target.value)}>
-          <option value="lightcoral">lightcoral</option>
-          <option value="midnightblue">midnightblue</option>
-          <option value="rebeccapurple">rebeccapurple</option>
-        </select>
+        <SelectColor color={color} onchange={handleSelect}/>
       </p>
       <Clock color={color} time={time.toLocaleTimeString()} />
     </div>
