@@ -36,12 +36,43 @@
     transform: rotate(360deg);
   }
 }
-.counter{
+.w-full {
+  width: 100%;
+}
+.card {
+  border: 1px solid gray;
+  background-color: aliceblue;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  gap: 20px;
+  width: fit-content;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.thumbnail {
+  position: relative;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.content > .title {
+  font-size: 24px;
+  color: black;
+}
+.btn {
+  padding: 10px;
+  text-align: center;
+  background-color: red;
+  color: white;
   font-size: 20px;
+}
+.btn.bg-success {
+  background-color: green;
+}
+.glallery-card {
+  width: 600px;
+  margin-top: 50px;
+  margin-left: auto;
+  border: 2px solid gray;
+  margin-right: 100px;
 }

@@ -6,8 +6,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+h1{
+  color: blue;
+  font-weight: 700;
+}
+h2{
+  color: red;
+  font-weight: 700;
+}
+.parent{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed blue;
+}
+.child{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed red;
+  justify-content: center;
+  align-items: center;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
