@@ -31,15 +31,29 @@ export default function TaskApp() {
   function handleDeleteTask(taskId) {
     setTasks(tasks.filter((t) => t.id !== taskId));
   }
-
+  const handleColorChange = (color,id) => {
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === id) {
+          return {
+            ...t,
+            color:color
+          };
+        } else {
+          return t;
+        }
+      })
+    );
+  };
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>task app</h1>
       <AddTask onAddTask={handleAddTask} />
       <TaskList
         tasks={tasks}
         onChangeTask={handleChangeTask}
         onDeleteTask={handleDeleteTask}
+        onColorChange={handleColorChange}
       />
     </>
   );
@@ -47,7 +61,7 @@ export default function TaskApp() {
 
 let nextId = 3;
 const initialTasks = [
-  {id: 0, text: 'Visit Kafka Museum', done: true},
-  {id: 1, text: 'Watch a puppet show', done: false},
-  {id: 2, text: 'Lennon Wall pic', done: false},
+  { id: 1, text: 'Task 1', done: false, color: 'red' },
+  { id: 2, text: 'Task 2', done: false, color: 'green' },
+  { id: 3, text: 'Task 3', done: false, color: 'blue' }
 ];

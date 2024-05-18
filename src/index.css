@@ -92,3 +92,31 @@ button.delete {
 button.delete:hover {
   background-color: #c82333;
 }
+
+
+.color-select {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+}
+
+.color-select label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.color-select input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.task-text.red {
+  color: red;
+}
+
+.task-text.green {
+  color: green;}
+
+.task-text.blue {
+  color: blue;
+}
