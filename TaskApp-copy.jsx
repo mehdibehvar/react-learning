@@ -1,41 +1,49 @@
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import AddTask from './AddTask.jsx';
 import TaskList from './TaskList.jsx';
-import { taskReducer } from '../reducers/taskReducer.js';
 
 export default function TaskApp() {
- const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
+  const [tasks, setTasks] = useState(initialTasks);
+
   function handleAddTask(text) {
-  dispatch({
-    type:"add_task",
-    payload:{
-      id:nextId++,
-      text:text
-    }
-  })
+    setTasks([
+      ...tasks,
+      {
+        id: nextId++,
+        text: text,
+        done: false,
+      },
+    ]);
   }
 
   function handleChangeTask(task) {
-    dispatch({
-      type:"edit_task",
-      payload:task
-    })
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return task;
+        } else {
+          return t;
+        }
+      })
+    );
   }
 
   function handleDeleteTask(taskId) {
-    dispatch({
-      type:"delete_task",
-      payload:taskId
-    })
+    setTasks(tasks.filter((t) => t.id !== taskId));
   }
   const handleColorChange = (color,id) => {
-    dispatch({
-      type:"change_color_task",
-      payload:{
-        id,
-        color
-      }
-    })
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === id) {
+          return {
+            ...t,
+            color:color
+          };
+        } else {
+          return t
+        }
+      })
+    );
   };
   return (
     <>
