@@ -1,13 +1,13 @@
 import { createContext, useReducer } from "react";
-import cookies from 'js-cookie';
+import cookies from "js-cookie";
 
 export const userStore = createContext();
+
 const initialState = {
   loading: false,
-  token: cookies.get("token") ? JSON.parse(cookies.get("token")) : null,
+  token: cookies.get("token") ? cookies.get("token") : "",
   error: null,
   username: "",
-  password: "",
 };
 export const actionType = {
   login_request: "LOGIN-REQUEST",
@@ -16,6 +16,7 @@ export const actionType = {
   login_error: "LOGIN-ERROR",
   update_userInfo: "UPDATE-USERINFO",
   get_user_info: "GET-USER-INFO",
+  Set_user_info: "SET-USER-INFO",
 };
 
 const reducer = (state, action) => {
@@ -25,35 +26,41 @@ const reducer = (state, action) => {
         ...state,
         loading: true,
       };
-    case actionType.login_success:{
-        const payload=action.payload;
-        cookies.set('token',payload.token)
-        return {
-            ...state,
-              loading: false,
-              token: payload.token,
-              username:payload.username,
-              password:payload.password
-          };
+    case actionType.login_success: {
+      const payload = action.payload;
+      cookies.set("token", payload.token);
+      return {
+        ...state,
+        loading: false,
+        token: payload.token,
+      };
+    }
+    case actionType.Set_user_info: {
+      const payload = action.payload;
+      return {
+        ...state,
+        loading: false,
+        username:payload.username,
+      };
     }
     case actionType.login_error:
       return {
         ...state,
-          loading: false,
-          error: action.payload,
+        loading: false,
+        error: action.payload,
       };
     case actionType.get_user_info:
       return {
         ...state,
-          loading: false,
+        loading: false,
       };
     case actionType.logout_user:
       return {
         ...state,
-          loading: false,
-          token: null,
-          username: "",
-          password: "",
+        loading: false,
+        token: null,
+        username: "",
+        password: "",
       };
 
     default:

@@ -6,7 +6,7 @@ import ProductsList from '../components/ProductsList';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [update, setUpdate] = useState(false);
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -19,12 +19,12 @@ const Products = () => {
         setLoading(false);
       }
     };
-
     fetchProducts();
   }, []);
 
   return (
     <div className="products-container p-5 mt-8">
+      <div className="p-2"><button onClick={()=>setUpdate(!update)} className='border-2 text-lg p-2 mb-4'>update products</button></div>
       {loading ? <Loading fullPage={true} /> : <ProductsList products={products} />}
     </div>
   );

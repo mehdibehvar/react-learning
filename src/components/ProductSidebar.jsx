@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import CounterItem from './CounterItem';
 import { cartActionType, cartStore } from '../contexts/cartStore';
+import CartHeader from './CartHeader';
 
 const ProductSidebar = ({ product }) => {
   const {state,dispatch}=useContext(cartStore);
@@ -14,7 +15,7 @@ const ProductSidebar = ({ product }) => {
   return (
     <div className="w-full md:w-1/3 bg-white p-4 rounded-lg shadow-lg">
       <div className="flex justify-between items-center mb-4">
-        <span className="text-gray-600">Seller</span>
+       <CartHeader/>
         <div className="flex items-center">
           <span className="text-sm text-gray-700">{product.sellerName}</span>
           <svg className="w-5 h-5 text-gray-500 ml-2" fill="currentColor" viewBox="0 0 20 20">

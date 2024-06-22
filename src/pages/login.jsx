@@ -7,26 +7,9 @@ import { actionType, userStore } from "../contexts/userStore";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('mor_2314');
-  const [password, setPassword] = useState('83r5^_');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  // const handleLogin = async (event) => {
-  //   event.preventDefault();
-  //   setLoading(true);
-  //   setError('');
-  //   try {
-  //     const response = await post('/auth/login', {
-  //       username,
-  //       password,
-  //     });
-  //     cookies.set('token',response.token);
-  //     navigate('/');
-  //   } catch (err) {
-  //     setLoading(false);
-  //     setError('Login failed. Please check your username and password.');
-  //   } 
-  // };
+  const [username, setUsername] = useState("mor_2314");
+  const [password, setPassword] = useState("83r5^_");
+
   const { state, dispatch } = useContext(userStore);
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -38,23 +21,25 @@ const Login = () => {
         username,
         password,
       });
-      dispatch({
-        type: actionType.login_success,
-        payload:{
-          username,
-          password,
-          token:JSON.stringify(response.token)
-        }
-      });
-      navigate("/");
+      if (response) {
+        dispatch({
+          type: actionType.login_success,
+          payload: {
+            username,
+            password,
+            token: JSON.stringify(response.token),
+          },
+        });
+        navigate("/");
+      }
     } catch (err) {
       dispatch({
         type: actionType.login_error,
-        payload:{
-          msg:"Login failed. Please check your username and password."
-        }
+        payload: {
+          msg: "Login failed. Please check your username and password.",
+        },
       });
-    } 
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -93,14 +78,16 @@ const Login = () => {
               required
             />
           </div>
-          {state.error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
+          {state.error && (
+            <p className="text-red-500 text-xs italic mb-4">{state.error}</p>
+          )}
           <div className="flex items-center justify-between">
             <button
               type="submit"
               className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
+                state.loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
-              disabled={loading}
+              disabled={state.loading}
             >
               {state.loading ? "Logging in..." : "Login"}
             </button>

@@ -9,6 +9,7 @@ const ProductsList = ({ products }) => {
         console.log('Added to cart:', product);
         enqueueSnackbar(`${product.title} added to cart!`, { variant: 'success' });
     };
+
     return (
         <div className="products-list">
             {products.map(product => (
