@@ -1,31 +1,17 @@
 // src/components/Navbar.js
-import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
-import { actionType, userStore } from "../../contexts/userStore";
-import { get } from "../../utils/httpClient/httpClient";
+import { useContext, useState } from "react";
+import { userStore } from "../../contexts/userStore";
+
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { state, dispatch } = useContext(userStore);
+  const { state } = useContext(userStore);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await get('/users/3');
-        dispatch({
-          type: actionType.Set_user_info,
-          payload: response,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchUserInfo();
-  }, []);
 
   return (
     <nav className="bg-primary p-4 sticky top-0 z-50">

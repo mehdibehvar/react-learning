@@ -20,7 +20,7 @@ const Products = () => {
       }
     };
     fetchProducts();
-  }, []);
+  }, [update]);
 
   return (
     <div className="products-container p-5 mt-8">

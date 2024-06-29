@@ -5,9 +5,9 @@ export const userStore = createContext();
 
 const initialState = {
   loading: false,
-  token: cookies.get("token") ? cookies.get("token") : "",
-  error: null,
-  username: "",
+  token: cookies.get("token") ? cookies.get("token") : null,
+  error: '',
+  username: '',
 };
 export const actionType = {
   login_request: "LOGIN-REQUEST",

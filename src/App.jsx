@@ -7,9 +7,29 @@ import { SnackbarProvider } from "notistack";
 
 import Cart from "./pages/Cart";
 import Home from "./pages/home";
+import  { useContext, useEffect } from "react";
+import { actionType, userStore } from "./contexts/userStore";
+import { get } from "./utils/httpClient/httpClient";
 
 
 function App() {
+  const { dispatch } = useContext(userStore);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await get('/users/3');
+        dispatch({
+          type: actionType.Set_user_info,
+          payload: response,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
   return (
     <SnackbarProvider
       maxSnack={3}

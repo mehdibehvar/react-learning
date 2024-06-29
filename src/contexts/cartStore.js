@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 
 export const cartStore = createContext();
+
 const initialState = {
   loading: false,
   error: null,
@@ -44,8 +45,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: false,
-          qty:newCartItems.length,
-          cartItems:newCartItems
+        qty:newCartItems.length,
+        cartItems:newCartItems
       };
     }
     default:
